@@ -120,7 +120,9 @@ target = attrition["Attrition_numerical"]
 # Train/test split
 train, test, target_train, target_val = train_test_split(attrition_final, target, train_size=0.8, random_state=0)
 
-# SMOTE oversampling
+# SMOTE oversampling (FIXED)
+train = train.select_dtypes(include=[np.number])  # Ensure numeric features only
+target_train = target_train.astype(int)           # Ensure target is int
 oversampler = SMOTE(random_state=0)
 smote_train, smote_target = oversampler.fit_resample(train, target_train)
 
