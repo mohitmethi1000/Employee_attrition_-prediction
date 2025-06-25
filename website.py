@@ -119,8 +119,10 @@ target = attrition["Attrition_numerical"]
 
 # Train/test split
 train_full, test_full, target_train, target_val = train_test_split(attrition_final, target, train_size=0.8, random_state=0)
-train_full = train_full.astype(float)
-target_train = target_train.astype(int)
+train_full = train_full.astype(np.float32)
+test_full = test_full.astype(np.float32)
+target_train = target_train.astype(np.int32)
+target_val = target_val.astype(np.int32)
 
 # SMOTE oversampling (FIXED)
 oversampler = SMOTE(random_state=0)
